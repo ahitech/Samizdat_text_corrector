@@ -1,5 +1,6 @@
 ﻿namespace Text_corrector
 {
+
     partial class Form1
     {
         /// <summary>
@@ -28,11 +29,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.InputBox = new System.Windows.Forms.RichTextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.inputBox = new Text_corrector.InputBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.OutputBox = new System.Windows.Forms.TextBox();
+            this.OutputBox = new System.Windows.Forms.RichTextBox();
             this.Convert_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.startFootnotesFrom = new System.Windows.Forms.MaskedTextBox();
@@ -47,44 +47,40 @@
             this.AmountOfSpaces = new System.Windows.Forms.MaskedTextBox();
             this.SpacingAtParagraphStart = new System.Windows.Forms.Label();
             this.ParagraphsSpacing = new System.Windows.Forms.CheckBox();
+            this.CorrectFootnotesButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // InputBox
-            // 
-            this.InputBox.AutoWordSelection = true;
-            this.InputBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InputBox.Location = new System.Drawing.Point(3, 16);
-            this.InputBox.Margin = new System.Windows.Forms.Padding(5);
-            this.InputBox.MinimumSize = new System.Drawing.Size(4, 100);
-            this.InputBox.Name = "InputBox";
-            this.InputBox.ShowSelectionMargin = true;
-            this.InputBox.Size = new System.Drawing.Size(986, 186);
-            this.InputBox.TabIndex = 0;
-            this.InputBox.Text = "";
-            this.InputBox.TextChanged += new System.EventHandler(this.InputBox_TextChanged);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.InputBox);
+            this.groupBox1.Controls.Add(this.inputBox);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(10, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 10);
             this.groupBox1.MaximumSize = new System.Drawing.Size(0, 300);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(992, 205);
+            this.groupBox1.Size = new System.Drawing.Size(992, 192);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "HTML, скопированный из Ворда";
+            // 
+            // inputBox
+            // 
+            this.inputBox.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.inputBox.Location = new System.Drawing.Point(6, 17);
+            this.inputBox.Name = "inputBox";
+            this.inputBox.Size = new System.Drawing.Size(980, 169);
+            this.inputBox.TabIndex = 11;
+            this.inputBox.Text = "";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.OutputBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 269);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(748, 430);
+            this.groupBox2.Size = new System.Drawing.Size(748, 294);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Результат чистки";
@@ -93,21 +89,22 @@
             // 
             this.OutputBox.CausesValidation = false;
             this.OutputBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OutputBox.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.OutputBox.HideSelection = false;
             this.OutputBox.Location = new System.Drawing.Point(3, 16);
             this.OutputBox.MaxLength = 0;
             this.OutputBox.MinimumSize = new System.Drawing.Size(300, 4);
-            this.OutputBox.Multiline = true;
             this.OutputBox.Name = "OutputBox";
-            this.OutputBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.OutputBox.Size = new System.Drawing.Size(742, 411);
+            this.OutputBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.OutputBox.Size = new System.Drawing.Size(742, 275);
             this.OutputBox.TabIndex = 0;
+            this.OutputBox.Text = "";
             // 
             // Convert_button
             // 
-            this.Convert_button.Image = ((System.Drawing.Image)(resources.GetObject("Convert_button.Image")));
+            this.Convert_button.Image = global::Text_corrector.Properties.Resources.Convert_button;
             this.Convert_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Convert_button.Location = new System.Drawing.Point(216, 213);
+            this.Convert_button.Location = new System.Drawing.Point(215, 212);
             this.Convert_button.Margin = new System.Windows.Forms.Padding(10);
             this.Convert_button.MinimumSize = new System.Drawing.Size(100, 40);
             this.Convert_button.Name = "Convert_button";
@@ -129,7 +126,7 @@
             // 
             // startFootnotesFrom
             // 
-            this.startFootnotesFrom.Location = new System.Drawing.Point(176, 23);
+            this.startFootnotesFrom.Location = new System.Drawing.Point(131, 22);
             this.startFootnotesFrom.Mask = "00000";
             this.startFootnotesFrom.Name = "startFootnotesFrom";
             this.startFootnotesFrom.Size = new System.Drawing.Size(51, 20);
@@ -139,7 +136,7 @@
             // 
             // pasteButton
             // 
-            this.pasteButton.Location = new System.Drawing.Point(15, 213);
+            this.pasteButton.Location = new System.Drawing.Point(15, 212);
             this.pasteButton.Margin = new System.Windows.Forms.Padding(10);
             this.pasteButton.MinimumSize = new System.Drawing.Size(100, 40);
             this.pasteButton.Name = "pasteButton";
@@ -163,6 +160,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.CorrectFootnotesButton);
             this.groupBox3.Controls.Add(this.AlignmentListBox);
             this.groupBox3.Controls.Add(this.AlignmentLabel);
             this.groupBox3.Controls.Add(this.TextWidthTextBox);
@@ -174,11 +172,10 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.RemoveBlankLinesCheckBox);
             this.groupBox3.Controls.Add(this.startFootnotesFrom);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox3.Location = new System.Drawing.Point(769, 205);
             this.groupBox3.MinimumSize = new System.Drawing.Size(176, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 497);
+            this.groupBox3.Size = new System.Drawing.Size(233, 355);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Коррекции результата";
@@ -281,24 +278,32 @@
             this.ParagraphsSpacing.UseVisualStyleBackColor = true;
             this.ParagraphsSpacing.CheckedChanged += new System.EventHandler(this.ParagraphSpacing_CheckedChanged);
             // 
+            // CorrectFootnotesButton
+            // 
+            this.CorrectFootnotesButton.Location = new System.Drawing.Point(189, 22);
+            this.CorrectFootnotesButton.Name = "CorrectFootnotesButton";
+            this.CorrectFootnotesButton.Size = new System.Drawing.Size(38, 20);
+            this.CorrectFootnotesButton.TabIndex = 18;
+            this.CorrectFootnotesButton.Text = "Да!";
+            this.CorrectFootnotesButton.UseVisualStyleBackColor = true;
+            this.CorrectFootnotesButton.Click += new System.EventHandler(this.CorrectFootnotesButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1012, 712);
+            this.ClientSize = new System.Drawing.Size(1012, 576);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pasteButton);
             this.Controls.Add(this.Convert_button);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
             this.Text = "Main Window";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -307,10 +312,10 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox InputBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox OutputBox;
+        // private System.Windows.Forms.TextBox OutputBox;
+        private System.Windows.Forms.RichTextBox OutputBox;
         private System.Windows.Forms.Button Convert_button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox startFootnotesFrom;
@@ -325,6 +330,8 @@
         private System.Windows.Forms.CheckBox SurroundTable;
         private System.Windows.Forms.Label AlignmentLabel;
         private System.Windows.Forms.ComboBox AlignmentListBox;
+        private InputBox inputBox;
+        private System.Windows.Forms.Button CorrectFootnotesButton;
     }
 }
 

@@ -10,6 +10,64 @@ using System.Windows.Forms;
 
 namespace Text_corrector
 {
+    
+/*    class InputTextBox : RichTextBox
+    {
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+             bool ctrlV = e.Modifiers == Keys.Control && e.KeyCode == Keys.V;
+             bool shiftIns = e.Modifiers == Keys.Shift && e.KeyCode == Keys.Insert;
+
+             if (ctrlV || shiftIns)
+                 InputBox_Paste();
+        }
+
+        public void InputBox_Paste()
+        {
+
+            // Get a web browser
+            WebBrowser web = new WebBrowser();
+
+            // Load the MSHTML component into the web browser control
+            web.Navigate("about:blank");
+            Application.DoEvents();
+
+            // Change into design mode
+            ((mshtml.HTMLDocument)web.Document.DomDocument).designMode = "On";
+            Application.DoEvents();
+
+            // Paste the clipboard contents into the control
+            object o = System.Reflection.Missing.Value;
+            ((SHDocVw.WebBrowser)web.ActiveXInstance).ExecWB(
+               SHDocVw.OLECMDID.OLECMDID_PASTE,
+               SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, ref o, ref o);
+            Application.DoEvents();
+
+            // Extract the resulting HTML
+            this.Text = web.Document.Body.InnerHtml;
+
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            // Trap WM_PASTE:
+            if (m.Msg == 0x302 && Clipboard.ContainsText())
+            {
+                InputBox_Paste();
+                return;
+            }
+            base.WndProc(ref m);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
+        }
+    };
+    */
+
     public partial class Form1 : Form
     {
         Dictionary<Char, String> dictionary = new Dictionary<Char, String>();
@@ -59,54 +117,20 @@ namespace Text_corrector
             // RemoveBlankLinesCheckBox_CheckedChanged(sender, e);
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        public void InputBox_Paste(object sender, EventArgs e)
-        {
-
-            // Get a web browser
-            WebBrowser web = new WebBrowser();
-
-            // Load the MSHTML component into the web browser control
-            web.Navigate("about:blank");
-            Application.DoEvents();
-
-            // Change into design mode
-            ((mshtml.HTMLDocument)web.Document.DomDocument).designMode = "On";
-            Application.DoEvents();
-
-            // Paste the clipboard contents into the control
-            object o = System.Reflection.Missing.Value;
-            ((SHDocVw.WebBrowser)web.ActiveXInstance).ExecWB(
-               SHDocVw.OLECMDID.OLECMDID_PASTE,
-               SHDocVw.OLECMDEXECOPT.OLECMDEXECOPT_DODEFAULT, ref o, ref o);
-            Application.DoEvents();
-
-            // Extract the resulting HTML
-            InputBox.Text = web.Document.Body.InnerHtml;
-
-        }
-
+        private int footnoteNumber = 0;
         private string evaluator1 (Match match)
         {
             StringBuilder sb = new StringBuilder();
-            int startingFootnoteNumber = 0;
-
-            if (startFootnotesFrom.Text.Length > 0)
-                startingFootnoteNumber = System.Int32.Parse(startFootnotesFrom.Text);
-
             int count1 = int.Parse(match.Groups["count1"].Value);
             int count2 = int.Parse(match.Groups["count2"].Value);
             int count3 = int.Parse(match.Groups["count3"].Value);
 
-            sb.Append("<A href=\"#_ftn");
-            sb.Append(startingFootnoteNumber + count1);
+            sb.Append("<A title=\"\" href=\"#_ftn");
+            sb.Append(footnoteNumber);
             sb.Append("\" name=_ftnref");
-            sb.Append(startingFootnoteNumber + count2);
-            sb.Append(">[").Append(startingFootnoteNumber + count3).Append("]</A>");
+            sb.Append(footnoteNumber);
+            sb.Append(">[").Append(footnoteNumber).Append("]</A>");
+            footnoteNumber++;
 
             return sb.ToString();
         }
@@ -114,20 +138,17 @@ namespace Text_corrector
         private string evaluator2(Match match)
         {
             StringBuilder sb = new StringBuilder();
-            int startingFootnoteNumber = 0;
-
-            if (startFootnotesFrom.Text.Length > 0)
-                startingFootnoteNumber = System.Int32.Parse(startFootnotesFrom.Text);
 
             int count1 = int.Parse(match.Groups["count1"].Value);
             int count2 = int.Parse(match.Groups["count2"].Value);
             int count3 = int.Parse(match.Groups["count3"].Value);
 
-            sb.Append("<A href=\"#_ftnref");
-            sb.Append(startingFootnoteNumber + count1);
+            sb.Append("<A title=\"\" href=\"#_ftnref");
+            sb.Append(footnoteNumber);
             sb.Append("\" name=_ftn");
-            sb.Append(startingFootnoteNumber + count2);
-            sb.Append(">[").Append(startingFootnoteNumber + count3).Append("]</A>");
+            sb.Append(footnoteNumber);
+            sb.Append(">[").Append(footnoteNumber).Append("]</A>");
+            footnoteNumber++;
 
             return sb.ToString();
         }
@@ -164,15 +185,36 @@ namespace Text_corrector
                 input = reg.Replace (input, replacement.Value);
             }
 
+            
+
+            return (input);
+        }
+
+        private void CorrectFootnotes()
+        {
+            int temp;
+            try
+            {
+                if (startFootnotesFrom.Text.Length > 0)
+                    footnoteNumber = System.Int32.Parse(startFootnotesFrom.Text);
+            }
+            catch (Exception)
+            {
+                footnoteNumber = 1;
+            }
+            temp = footnoteNumber;
+            String input = OutputBox.Text;
+
             /* Correcting the footnotes */
             input = Regex.Replace(input,
                                   "<A \\S+ href=\"#_ftn(?<count1>\\d+)\" name=_ftnref(?<count2>\\d+)>\\[(?<count3>\\d+)\\]</A>",
                                   evaluator1);
+            footnoteNumber = temp;
             input = Regex.Replace(input,
                                   "<A \\S+ href=\"#_ftnref(?<count1>\\d+)\" name=_ftn(?<count2>\\d+)>\\[(?<count3>\\d+)\\]</A>",
                                   evaluator2);
 
-            return (input);
+            OutputBox.Text = input;
         }
 
         private String ReplaceText(String input)
@@ -187,7 +229,7 @@ namespace Text_corrector
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String input = InputBox.Text;
+            String input = inputBox.Text;
             String output = "";
 
             input = CleanupHTMLText(input);
@@ -211,28 +253,24 @@ namespace Text_corrector
             OutputBox.Text = output;
         }
 
-        private void InputBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void pasteButton_Click(object sender, EventArgs e)
         {
-            InputBox_Paste(sender, e);
+            this.inputBox.InputBox_Paste();
         }
 
         private void RemoveBlankLinesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-          if (RemoveBlankLinesCheckBox.Checked)
-          {
-              //while (OutputBox.Text.Contains('\r'))
-              //{
-                  OutputBox.Text.Replace("\r\n", "\a");
-              //}
-          }
-          else
-          {
-              OutputBox.Text.Replace("\a", "\r\n");
-          }
+            Regex reg;
+            String input = OutputBox.Text;
+            if (RemoveBlankLinesCheckBox.Checked)
+            {
+                input = input.Replace("\n", @"<!-- new line //-->");
+            }
+            else
+            {
+                input = input.Replace(@"<!-- new line //-->", "\n");
+            }
+            OutputBox.Text = input;
         }
 
         private void ParagraphSpacing_CheckedChanged(object sender, EventArgs e)
@@ -306,7 +344,7 @@ namespace Text_corrector
             int width;
             try {
                 width = int.Parse(TextWidthTextBox.Text);
-            } catch (Exception e) {
+            } catch (Exception ) {
                 width = 100;
             }
             string alignment = TextWidthTextBox_GetAligment();
@@ -330,17 +368,18 @@ namespace Text_corrector
             switch (AlignmentListBox.SelectedIndex) {
                 case 0: 
                     return "left";
-                    break;
                 case 1:
                     return "center";
-                    break;
                 case 2:
                     return "right";
-                    break;
                 default:
                     return "justify";
-                    break;
             };
+        }
+
+        private void CorrectFootnotesButton_Click(object sender, EventArgs e)
+        {
+            this.CorrectFootnotes();
         }
     }
 }
