@@ -114,7 +114,8 @@ namespace Text_corrector
             replacee.Add("<href", "<a href");
 //            replacee.Add(" J", " &#x263A;");
 
-            // RemoveBlankLinesCheckBox_CheckedChanged(sender, e);
+            this.AlignmentListBox.SelectedIndex = 3;
+            this.SurroundWithTable_CheckedChanged(sender, e);
         }
 
         private int footnoteNumber = 0;
@@ -260,7 +261,6 @@ namespace Text_corrector
 
         private void RemoveBlankLinesCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Regex reg;
             String input = OutputBox.Text;
             if (RemoveBlankLinesCheckBox.Checked)
             {
