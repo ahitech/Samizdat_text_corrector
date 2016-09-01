@@ -32,3 +32,4 @@ I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\ob
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.pdb
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.Form1.resources
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.csprojResolveAssemblyReference.cache
+I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.PreviewPane.resources

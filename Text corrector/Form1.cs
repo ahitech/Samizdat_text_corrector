@@ -114,8 +114,20 @@ namespace Text_corrector
             replacee.Add("<href", "<a href");
 //            replacee.Add(" J", " &#x263A;");
 
+            // On-load modifications
             this.AlignmentListBox.SelectedIndex = 3;
+            this.AlignmentListBox.SelectedIndexChanged += new System.EventHandler(this.TextWidthTextBox_Changed);
             this.SurroundWithTable_CheckedChanged(sender, e);
+            this.Convert_button.Click += new System.EventHandler(this.button1_Click);
+            this.startFootnotesFrom.Text = "1";
+            this.pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
+            this.RemoveBlankLinesCheckBox.CheckedChanged += new System.EventHandler(this.RemoveBlankLinesCheckBox_CheckedChanged);
+            this.TextWidthTextBox.TextChanged += new System.EventHandler(this.TextWidthTextBox_Changed);
+            this.SurroundTable.CheckedChanged += new System.EventHandler(this.SurroundWithTable_CheckedChanged);
+            this.AmountOfSpaces.Text = "2";
+            this.AmountOfSpaces.TextChanged += new System.EventHandler(this.AmountOfSpaces_Changed);
+            this.ParagraphsSpacing.CheckedChanged += new System.EventHandler(this.ParagraphSpacing_CheckedChanged);
+            this.CorrectFootnotesButton.Click += new System.EventHandler(this.CorrectFootnotesButton_Click);
         }
 
         private int footnoteNumber = 0;
@@ -380,6 +392,24 @@ namespace Text_corrector
         private void CorrectFootnotesButton_Click(object sender, EventArgs e)
         {
             this.CorrectFootnotes();
+        }
+
+        private void SendToTypografButton_Click(object sender, EventArgs e)
+        {
+            ArtLebedevStudio.RemoteTypograf remoteTypograf = new ArtLebedevStudio.RemoteTypograf();
+
+            remoteTypograf.xmlEntities();
+            remoteTypograf.br(true);
+            remoteTypograf.p(true);
+            remoteTypograf.nobr(3);
+
+            inputBox.Text = remoteTypograf.ProcessText(inputBox.Text);
+        }
+
+        private void PreviewButton_Click(object sender, EventArgs e)
+        {
+            PreviewPane preview = new PreviewPane(this);
+            preview.Show();
         }
     }
 }

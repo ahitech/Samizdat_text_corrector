@@ -30,7 +30,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.inputBox = new Text_corrector.InputBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.OutputBox = new System.Windows.Forms.RichTextBox();
             this.Convert_button = new System.Windows.Forms.Button();
@@ -39,6 +38,7 @@
             this.pasteButton = new System.Windows.Forms.Button();
             this.RemoveBlankLinesCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.CorrectFootnotesButton = new System.Windows.Forms.Button();
             this.AlignmentListBox = new System.Windows.Forms.ComboBox();
             this.AlignmentLabel = new System.Windows.Forms.Label();
             this.TextWidthTextBox = new System.Windows.Forms.MaskedTextBox();
@@ -47,7 +47,9 @@
             this.AmountOfSpaces = new System.Windows.Forms.MaskedTextBox();
             this.SpacingAtParagraphStart = new System.Windows.Forms.Label();
             this.ParagraphsSpacing = new System.Windows.Forms.CheckBox();
-            this.CorrectFootnotesButton = new System.Windows.Forms.Button();
+            this.SendToTypografButton = new System.Windows.Forms.Button();
+            this.PreviewButton = new System.Windows.Forms.Button();
+            this.inputBox = new Text_corrector.InputBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -65,15 +67,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "HTML, скопированный из Ворда";
-            // 
-            // inputBox
-            // 
-            this.inputBox.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputBox.Location = new System.Drawing.Point(6, 17);
-            this.inputBox.Name = "inputBox";
-            this.inputBox.Size = new System.Drawing.Size(980, 169);
-            this.inputBox.TabIndex = 11;
-            this.inputBox.Text = "";
             // 
             // groupBox2
             // 
@@ -104,7 +97,7 @@
             // 
             this.Convert_button.Image = global::Text_corrector.Properties.Resources.Convert_button;
             this.Convert_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Convert_button.Location = new System.Drawing.Point(215, 212);
+            this.Convert_button.Location = new System.Drawing.Point(564, 212);
             this.Convert_button.Margin = new System.Windows.Forms.Padding(10);
             this.Convert_button.MinimumSize = new System.Drawing.Size(100, 40);
             this.Convert_button.Name = "Convert_button";
@@ -113,7 +106,6 @@
             this.Convert_button.TabIndex = 3;
             this.Convert_button.Text = "ЧИСТКА!";
             this.Convert_button.UseVisualStyleBackColor = true;
-            this.Convert_button.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -141,11 +133,10 @@
             this.pasteButton.MinimumSize = new System.Drawing.Size(100, 40);
             this.pasteButton.Name = "pasteButton";
             this.pasteButton.Padding = new System.Windows.Forms.Padding(5);
-            this.pasteButton.Size = new System.Drawing.Size(196, 50);
+            this.pasteButton.Size = new System.Drawing.Size(135, 50);
             this.pasteButton.TabIndex = 8;
             this.pasteButton.Text = "Выполнить копирование из Word";
             this.pasteButton.UseVisualStyleBackColor = true;
-            this.pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
             // 
             // RemoveBlankLinesCheckBox
             // 
@@ -156,10 +147,10 @@
             this.RemoveBlankLinesCheckBox.TabIndex = 9;
             this.RemoveBlankLinesCheckBox.Text = "Удалять пустые строки";
             this.RemoveBlankLinesCheckBox.UseVisualStyleBackColor = true;
-            this.RemoveBlankLinesCheckBox.CheckedChanged += new System.EventHandler(this.RemoveBlankLinesCheckBox_CheckedChanged);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.PreviewButton);
             this.groupBox3.Controls.Add(this.CorrectFootnotesButton);
             this.groupBox3.Controls.Add(this.AlignmentListBox);
             this.groupBox3.Controls.Add(this.AlignmentLabel);
@@ -175,10 +166,19 @@
             this.groupBox3.Location = new System.Drawing.Point(769, 205);
             this.groupBox3.MinimumSize = new System.Drawing.Size(176, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 355);
+            this.groupBox3.Size = new System.Drawing.Size(233, 358);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Коррекции результата";
+            // 
+            // CorrectFootnotesButton
+            // 
+            this.CorrectFootnotesButton.Location = new System.Drawing.Point(189, 22);
+            this.CorrectFootnotesButton.Name = "CorrectFootnotesButton";
+            this.CorrectFootnotesButton.Size = new System.Drawing.Size(38, 20);
+            this.CorrectFootnotesButton.TabIndex = 18;
+            this.CorrectFootnotesButton.Text = "Да!";
+            this.CorrectFootnotesButton.UseVisualStyleBackColor = true;
             // 
             // AlignmentListBox
             // 
@@ -194,7 +194,6 @@
             this.AlignmentListBox.Name = "AlignmentListBox";
             this.AlignmentListBox.Size = new System.Drawing.Size(108, 21);
             this.AlignmentListBox.TabIndex = 17;
-            this.AlignmentListBox.SelectedIndexChanged += new System.EventHandler(this.TextWidthTextBox_Changed);
             // 
             // AlignmentLabel
             // 
@@ -219,7 +218,6 @@
             this.TextWidthTextBox.Text = "95";
             this.TextWidthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.TextWidthTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.TextWidthTextBox.TextChanged += new System.EventHandler(this.TextWidthTextBox_Changed);
             // 
             // TextWidth
             // 
@@ -240,7 +238,6 @@
             this.SurroundTable.TabIndex = 12;
             this.SurroundTable.Text = "Отцентровать с полями";
             this.SurroundTable.UseVisualStyleBackColor = true;
-            this.SurroundTable.CheckedChanged += new System.EventHandler(this.SurroundWithTable_CheckedChanged);
             // 
             // AmountOfSpaces
             // 
@@ -252,10 +249,8 @@
             this.AmountOfSpaces.Size = new System.Drawing.Size(38, 20);
             this.AmountOfSpaces.SkipLiterals = false;
             this.AmountOfSpaces.TabIndex = 10;
-            this.AmountOfSpaces.Text = "2";
             this.AmountOfSpaces.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.AmountOfSpaces.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
-            this.AmountOfSpaces.TextChanged += new System.EventHandler(this.AmountOfSpaces_Changed);
             // 
             // SpacingAtParagraphStart
             // 
@@ -276,23 +271,42 @@
             this.ParagraphsSpacing.TabIndex = 10;
             this.ParagraphsSpacing.Text = "Сделать отступ у параграфов";
             this.ParagraphsSpacing.UseVisualStyleBackColor = true;
-            this.ParagraphsSpacing.CheckedChanged += new System.EventHandler(this.ParagraphSpacing_CheckedChanged);
             // 
-            // CorrectFootnotesButton
+            // SendToTypografButton
             // 
-            this.CorrectFootnotesButton.Location = new System.Drawing.Point(189, 22);
-            this.CorrectFootnotesButton.Name = "CorrectFootnotesButton";
-            this.CorrectFootnotesButton.Size = new System.Drawing.Size(38, 20);
-            this.CorrectFootnotesButton.TabIndex = 18;
-            this.CorrectFootnotesButton.Text = "Да!";
-            this.CorrectFootnotesButton.UseVisualStyleBackColor = true;
-            this.CorrectFootnotesButton.Click += new System.EventHandler(this.CorrectFootnotesButton_Click);
+            this.SendToTypografButton.Location = new System.Drawing.Point(154, 212);
+            this.SendToTypografButton.Name = "SendToTypografButton";
+            this.SendToTypografButton.Size = new System.Drawing.Size(84, 50);
+            this.SendToTypografButton.TabIndex = 11;
+            this.SendToTypografButton.Text = "Отправить в «Типограф»";
+            this.SendToTypografButton.UseVisualStyleBackColor = true;
+            this.SendToTypografButton.Click += new System.EventHandler(this.SendToTypografButton_Click);
+            // 
+            // PreviewButton
+            // 
+            this.PreviewButton.Location = new System.Drawing.Point(6, 329);
+            this.PreviewButton.Name = "PreviewButton";
+            this.PreviewButton.Size = new System.Drawing.Size(220, 23);
+            this.PreviewButton.TabIndex = 19;
+            this.PreviewButton.Text = "Как это будет выглядеть?";
+            this.PreviewButton.UseVisualStyleBackColor = true;
+            this.PreviewButton.Click += new System.EventHandler(this.PreviewButton_Click);
+            // 
+            // inputBox
+            // 
+            this.inputBox.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.inputBox.Location = new System.Drawing.Point(6, 17);
+            this.inputBox.Name = "inputBox";
+            this.inputBox.Size = new System.Drawing.Size(980, 169);
+            this.inputBox.TabIndex = 11;
+            this.inputBox.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 576);
+            this.Controls.Add(this.SendToTypografButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pasteButton);
             this.Controls.Add(this.Convert_button);
@@ -315,7 +329,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         // private System.Windows.Forms.TextBox OutputBox;
-        private System.Windows.Forms.RichTextBox OutputBox;
         private System.Windows.Forms.Button Convert_button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox startFootnotesFrom;
@@ -332,6 +345,9 @@
         private System.Windows.Forms.ComboBox AlignmentListBox;
         private InputBox inputBox;
         private System.Windows.Forms.Button CorrectFootnotesButton;
+        private System.Windows.Forms.Button SendToTypografButton;
+        private System.Windows.Forms.Button PreviewButton;
+        public System.Windows.Forms.RichTextBox OutputBox;
     }
 }
 
