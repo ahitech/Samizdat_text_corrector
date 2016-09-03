@@ -70,6 +70,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.OutputBox);
             this.groupBox2.Location = new System.Drawing.Point(12, 269);
             this.groupBox2.Name = "groupBox2";
@@ -95,6 +98,7 @@
             // 
             // Convert_button
             // 
+            this.Convert_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Convert_button.Image = global::Text_corrector.Properties.Resources.Convert_button;
             this.Convert_button.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Convert_button.Location = new System.Drawing.Point(564, 212);
@@ -163,10 +167,11 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.RemoveBlankLinesCheckBox);
             this.groupBox3.Controls.Add(this.startFootnotesFrom);
-            this.groupBox3.Location = new System.Drawing.Point(769, 205);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.groupBox3.Location = new System.Drawing.Point(769, 192);
             this.groupBox3.MinimumSize = new System.Drawing.Size(176, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(233, 358);
+            this.groupBox3.Size = new System.Drawing.Size(233, 374);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Коррекции результата";
@@ -284,7 +289,9 @@
             // 
             // PreviewButton
             // 
-            this.PreviewButton.Location = new System.Drawing.Point(6, 329);
+            this.PreviewButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PreviewButton.Location = new System.Drawing.Point(6, 345);
             this.PreviewButton.Name = "PreviewButton";
             this.PreviewButton.Size = new System.Drawing.Size(220, 23);
             this.PreviewButton.TabIndex = 19;
@@ -294,10 +301,11 @@
             // 
             // inputBox
             // 
+            this.inputBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inputBox.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.inputBox.Location = new System.Drawing.Point(6, 17);
+            this.inputBox.Location = new System.Drawing.Point(3, 16);
             this.inputBox.Name = "inputBox";
-            this.inputBox.Size = new System.Drawing.Size(980, 169);
+            this.inputBox.Size = new System.Drawing.Size(986, 173);
             this.inputBox.TabIndex = 11;
             this.inputBox.Text = "";
             // 
@@ -312,9 +320,11 @@
             this.Controls.Add(this.Convert_button);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(10, 0, 10, 10);
-            this.Text = "Main Window";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.Text = "Форматировщик Самиздата";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
