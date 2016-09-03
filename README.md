@@ -1,6 +1,6 @@
 # Корректор для Самиздата (http://www.samlib.ru)
 
-A simple program that helps posting texts to samlib.ru site. The interface is in Russian only, since this site is used almost solely by Russian-speakers.
+A simple program that helps preparing texts to be posted to samlib.ru site. The interface is in Russian only, since this site is used almost solely by Russian-speakers.
 
 Форматирование на Самиздате способно свести с ума любого. С целью справиться с этой напастью я написал простенькую программу на C#, которая решает большинство проблем.
 
