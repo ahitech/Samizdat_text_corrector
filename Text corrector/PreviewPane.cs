@@ -12,7 +12,7 @@ namespace Text_corrector
 {
     public partial class PreviewPane : Form
     {
-        public PreviewPane(Form1 reference)
+        public PreviewPane(MainWindow reference)
         {
             InitializeComponent();
 

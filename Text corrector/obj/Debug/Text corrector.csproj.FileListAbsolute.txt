@@ -26,10 +26,9 @@ I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\bi
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\bin\Debug\Interop.SHDocVw.dll
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Interop.SHDocVw.dll
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.csproj.ResolveComReference.cache
+I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.MainWindow.resources
+I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.PreviewPane.resources
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.Properties.Resources.resources
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.csproj.GenerateResource.Cache
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.exe
 I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.pdb
-I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.Form1.resources
-I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text corrector.csprojResolveAssemblyReference.cache
-I:\Documents\My Documents\Google Drive\Projects\Text corrector\Text corrector\obj\Debug\Text_corrector.PreviewPane.resources

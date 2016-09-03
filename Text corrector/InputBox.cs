@@ -47,6 +47,7 @@ namespace Text_corrector
             Application.DoEvents();
 
             // Extract the resulting HTML
+            this.Text = "";
             this.Text = web.Document.Body.InnerHtml;
 
         }
