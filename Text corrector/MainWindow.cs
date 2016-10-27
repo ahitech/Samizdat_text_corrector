@@ -36,26 +36,27 @@ namespace Text_corrector
             dictionary.Add ('®', "&#0174;");
             dictionary.Add ('†', "&#0134;");
             dictionary.Add ('‡', "&#0135;");
-//            dictionary.Add ('•', "&#0149;");
             dictionary.Add ('±', "&#0177;");
             dictionary.Add ('§', "&#0167;");
             dictionary.Add ('№', "&#8470;");
             dictionary.Add ('×', "&#0215;");  // Times sign
             dictionary.Add ('∙', "&#8729;");  // Multiplication dot
             dictionary.Add ('⋅', "&#8901;");  // Another multiplication dot
-//            dictionary.Add ('•', "&#8226;");  // Bullet
+            dictionary.Add ('•', "&#8226;");  // Bullet
 
             replacee.Add(" — ", "&#0160;&#0151; ");
             replacee.Add(" – ", "&#0160;&#0150; ");
             replacee.Add("— ", "&#0151;&#0160;");
             replacee.Add("– ", "&#0150;&#0160;");
-            replacee.Add("<P[^>]*>\\s*(?<separator>\\*\\s+\\*\\s+\\*)\\s*</P>", "<P align=center>${separator}</P>");
+
+            // Next line corrects the separator, which is three asterisks in form of *   *   *
+            replacee.Add("<P[^>]*>\\s*(?<separator>\\*(&nbsp;)*\\s+\\*(&nbsp;)*\\s+\\*)\\s*(?<new_text>.*)</P>", "<P align=center>${separator} ${new_text}</P>");
             replacee.Add(@"about:(\s)*blank", "");
             replacee.Add(@"<P[^>]*>(\s?)</P>", "");
-            replacee.Add("<P>(\\s*<B>\\s*)?(?<separator>\\*\\s+\\*\\s+\\*)(\\s*<B>\\s*)?\\s*(?<new_text>\\w+\\s+\\d+\\W\\d+\\W\\d+\\s*)(\\s*</B>\\s*)?</P>", "<P align=center>${separator}&#0160;<B>${new_text}</B></P>");
+//            replacee.Add("<P[^>]*>(\\s*<B>\\s*)?(?<separator>\\*(&nbsp;)*\\s+\\*(&nbsp;)*\\s+\\*)(\\s*<B>\\s*)?\\s*(?<new_text>\\w+\\s+\\d+\\W\\d+\\W\\d+\\s*)(\\s*</B>\\s*)?</P>", "<P align=center>${separator}&#0160;<B>${new_text}</B></P>");
 
             replacee.Add("<href", "<a href");
-//            replacee.Add(" J", " &#x263A;");      // Smiley
+
 
             // On-load modifications
             this.AlignmentListBox.SelectedIndex = 3;
@@ -128,7 +129,7 @@ namespace Text_corrector
                 {"<[/]?o:p>", ""},
                 {@"(\s+)J(\s?)", "${1}&#x263A;"},   // Смайлик
                 {" class=[^>]+>", ">"},
-                {@"<P[^>]*>(?<separator>\\*\\s+\\*\\s+\\*)(?<new_text>.*)</P>", "<P align=center>${separator} ${new_text}</P>"},
+//                {@"<P[^>]*>(?<separator>\\*(&nbsp;)*\\s+\\*(&nbsp;)*\\s+\\*)(?<new_text>.*)</P>", "<P align=center>${separator} ${new_text}</P>"},
                 {@"<P[^>]*>(\s?)</P>", ""},
                 {@"about:(\s)*blank", ""},
                 {@"</P>(?<text>\\[^\\s+\\])", "</P>\r\n\r\n${text}"},
